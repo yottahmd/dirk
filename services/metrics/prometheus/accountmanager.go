@@ -49,5 +49,5 @@ func (s *Service) setupAccountManagerMetrics() error {
 // AccountManagerCompleted is called when an account manager process is complete.
 func (s *Service) AccountManagerCompleted(started time.Time, request string, result core.Result) {
 	s.accountManagerProcessTimer.WithLabelValues(request).Observe(time.Since(started).Seconds())
-	s.signerRequests.WithLabelValues(request, strings.ToLower(result.String())).Inc()
+	s.accountManagerRequests.WithLabelValues(request, strings.ToLower(result.String())).Inc()
 }

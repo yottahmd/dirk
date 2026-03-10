@@ -49,5 +49,5 @@ func (s *Service) setupWalletManagerMetrics() error {
 // WalletManagerCompleted is called when a wallet manager process is complete.
 func (s *Service) WalletManagerCompleted(started time.Time, request string, result core.Result) {
 	s.walletManagerProcessTimer.WithLabelValues(request).Observe(time.Since(started).Seconds())
-	s.signerRequests.WithLabelValues(request, strings.ToLower(result.String())).Inc()
+	s.walletManagerRequests.WithLabelValues(request, strings.ToLower(result.String())).Inc()
 }
